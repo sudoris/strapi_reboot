@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "install-deps": "npm ci --legacy-peer-deps"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "4.20.2",
