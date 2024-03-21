@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_app_contributors",
+  "info": {
+    "displayName": "Contributor"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "splash": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "external": {
+      "type": "boolean"
+    },
+    "categories": {
+      "type": "json"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "authors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "article.author"
+    },
+    "abstract": {
+      "type": "string"
+    },
+    "funding": {
+      "type": "text"
+    },
+    "citation": {
+      "type": "text"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "apps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::app.app",
+      "inversedBy": "articles"
+    },
+    "datasets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::dataset.dataset",
+      "inversedBy": "articles"
+    },
+    "hideFromBanner": {
+      "type": "boolean"
+    },
+    "originId": {
+      "type": "string"
+    },
+    "originDatasets": {
+      "type": "json"
+    },
+    "originApps": {
+      "type": "json"
+    },
+    "mainFile": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article.file-pdf"
+    },
+    "supplementaryFiles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "article.file-pdf"
+    },
+    "markdown": {
+      "type": "richtext"
+    },
+    "testPDF": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -585,6 +585,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -736,46 +783,152 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiAppApp extends Schema.CollectionType {
+  collectionName: 'apps';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
+    singularName: 'app';
+    pluralName: 'apps';
+    displayName: 'App';
     description: '';
   };
   options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
+    title: Attribute.String;
+    articles: Attribute.Relation<
+      'api::app.app',
+      'manyToMany',
+      'api::article.article'
+    >;
+    status: Attribute.String;
+    slug: Attribute.String;
+    date: Attribute.DateTime;
+    external: Attribute.Boolean;
+    categories: Attribute.JSON;
+    tags: Attribute.JSON;
+    contributors: Attribute.Component<'app.contributor', true>;
+    image: Attribute.Media;
+    description: Attribute.Text;
+    url: Attribute.String;
+    funding: Attribute.Text;
+    citation: Attribute.Text;
+    originId: Attribute.String;
+    originDatasets: Attribute.JSON;
+    originArticles: Attribute.JSON;
+    datasets: Attribute.Relation<
+      'api::app.app',
+      'manyToMany',
+      'api::dataset.dataset'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::app.app', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::app.app', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'Article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    images: Attribute.Media;
+    title: Attribute.String;
+    status: Attribute.String;
+    splash: Attribute.Media;
+    thumbnail: Attribute.Media;
+    date: Attribute.DateTime;
+    slug: Attribute.String;
+    external: Attribute.Boolean;
+    categories: Attribute.JSON;
+    tags: Attribute.JSON;
+    authors: Attribute.Component<'article.author', true>;
+    abstract: Attribute.String;
+    funding: Attribute.Text;
+    citation: Attribute.Text;
+    doi: Attribute.String;
+    apps: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::app.app'
+    >;
+    datasets: Attribute.Relation<
+      'api::article.article',
+      'manyToMany',
+      'api::dataset.dataset'
+    >;
+    hideFromBanner: Attribute.Boolean;
+    originId: Attribute.String;
+    originDatasets: Attribute.JSON;
+    originApps: Attribute.JSON;
+    mainFile: Attribute.Component<'article.file-pdf'>;
+    supplementaryFiles: Attribute.Component<'article.file-pdf', true>;
+    markdown: Attribute.RichText;
+    testPDF: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::article.article',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDatasetDataset extends Schema.CollectionType {
+  collectionName: 'datasets';
+  info: {
+    singularName: 'dataset';
+    pluralName: 'datasets';
+    displayName: 'Dataset';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    articles: Attribute.Relation<
+      'api::dataset.dataset',
+      'manyToMany',
+      'api::article.article'
+    >;
+    status: Attribute.String;
+    apps: Attribute.Relation<
+      'api::dataset.dataset',
+      'manyToMany',
+      'api::app.app'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dataset.dataset',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dataset.dataset',
       'oneToOne',
       'admin::user'
     > &
@@ -797,10 +950,13 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
+      'api::app.app': ApiAppApp;
+      'api::article.article': ApiArticleArticle;
+      'api::dataset.dataset': ApiDatasetDataset;
     }
   }
 }

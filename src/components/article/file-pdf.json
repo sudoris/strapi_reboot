@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_article_file_pdfs",
+  "info": {
+    "displayName": "FilePDF",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}
