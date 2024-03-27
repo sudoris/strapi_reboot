@@ -31,6 +31,7 @@ export interface ArticleFilePdf extends Schema.Component {
   attributes: {
     type: Attribute.String;
     data: Attribute.JSON;
+    dataFile: Attribute.Media;
   };
 }
 
