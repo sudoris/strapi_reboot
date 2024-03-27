@@ -918,6 +918,24 @@ export interface ApiDatasetDataset extends Schema.CollectionType {
       'manyToMany',
       'api::app.app'
     >;
+    date: Attribute.DateTime;
+    external: Attribute.Boolean;
+    slug: Attribute.String;
+    project: Attribute.Boolean;
+    unit: Attribute.String;
+    description: Attribute.Text;
+    funding: Attribute.Text;
+    citation: Attribute.Text;
+    categories: Attribute.JSON;
+    tags: Attribute.JSON;
+    sources: Attribute.Component<'dataset.source', true>;
+    timePeriod: Attribute.Component<'dataset.time-period'>;
+    notes: Attribute.JSON;
+    datafile: Attribute.Media;
+    variables: Attribute.JSON;
+    originId: Attribute.String;
+    originArticles: Attribute.JSON;
+    originApps: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

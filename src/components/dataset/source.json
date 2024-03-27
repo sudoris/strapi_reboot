@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_dataset_sources",
+  "info": {
+    "displayName": "Source"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

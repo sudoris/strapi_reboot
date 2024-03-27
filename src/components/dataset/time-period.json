@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_dataset_time_periods",
+  "info": {
+    "displayName": "TimePeriod"
+  },
+  "options": {},
+  "attributes": {
+    "yearType": {
+      "type": "string"
+    },
+    "yearMin": {
+      "type": "string"
+    },
+    "yearMax": {
+      "type": "string"
+    }
+  }
+}

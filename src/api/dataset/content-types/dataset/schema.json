@@ -29,6 +29,72 @@
       "relation": "manyToMany",
       "target": "api::app.app",
       "mappedBy": "datasets"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "external": {
+      "type": "boolean"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "project": {
+      "type": "boolean"
+    },
+    "unit": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "funding": {
+      "type": "text"
+    },
+    "citation": {
+      "type": "text"
+    },
+    "categories": {
+      "type": "json"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "sources": {
+      "type": "component",
+      "repeatable": true,
+      "component": "dataset.source"
+    },
+    "timePeriod": {
+      "type": "component",
+      "repeatable": false,
+      "component": "dataset.time-period"
+    },
+    "notes": {
+      "type": "json"
+    },
+    "datafile": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "variables": {
+      "type": "json"
+    },
+    "originId": {
+      "type": "string"
+    },
+    "originArticles": {
+      "type": "json"
+    },
+    "originApps": {
+      "type": "json"
     }
   }
 }

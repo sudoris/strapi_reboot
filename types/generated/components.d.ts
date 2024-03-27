@@ -34,12 +34,37 @@ export interface ArticleFilePdf extends Schema.Component {
   };
 }
 
+export interface DatasetSource extends Schema.Component {
+  collectionName: 'components_dataset_sources';
+  info: {
+    displayName: 'Source';
+  };
+  attributes: {
+    title: Attribute.String;
+    url: Attribute.String;
+  };
+}
+
+export interface DatasetTimePeriod extends Schema.Component {
+  collectionName: 'components_dataset_time_periods';
+  info: {
+    displayName: 'TimePeriod';
+  };
+  attributes: {
+    yearType: Attribute.String;
+    yearMin: Attribute.String;
+    yearMax: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'app.contributor': AppContributor;
       'article.author': ArticleAuthor;
       'article.file-pdf': ArticleFilePdf;
+      'dataset.source': DatasetSource;
+      'dataset.time-period': DatasetTimePeriod;
     }
   }
 }
