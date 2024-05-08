@@ -875,7 +875,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     mainFile: Attribute.Component<'article.file-pdf'>;
     supplementaryFiles: Attribute.Component<'article.file-pdf', true>;
     markdown: Attribute.RichText;
-    testPDF: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
